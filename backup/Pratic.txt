@@ -1,0 +1,69 @@
+sudo singularity build --sandbox Pratic/ shub://LucaGiudice/r36-anaconda3-bioinformatics
+
+
+
+apt-get update
+
+$ R
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("Biobase","GenomicRanges"))
+
+apt-get install zlib1g-dev libssl-dev libssh2-1-dev libcurl4-openssl-dev libxml2-dev
+
+cd download/netDx/netDx/
+
+#Remove from 
+#/home/download/netDx/netDx/NAMESPACE
+#this row: import(r2cytoscape)
+import(doSNOW)
+import(tcltk)
+import(HiClimR)
+import(psych)
+import(matrixStats)
+import(data.table)
+
+$ R
+install.packages(c('glue','tinytex'))
+install.packages(c('usethis'))
+install.packages(c('devtools','curl'))
+install.packages(c("bigmemory","foreach","combinat","doParallel","ROCR","pracma","RColorBrewer","reshape2","ggplot2"))
+install.packages(c("igraph"))
+install.packages("knitr")
+install.packages(c("openssl","httr","RJSONIO"))
+install.packages(c('glmnet'))
+install.packages(c('XML'))
+install.packages(c('jsonlite'))
+install.packages(c('mime','R6','pkgconfig'))
+install.packages("netDx",type="source",repos=NULL)
+install.packages("netDx.examples",type="source",repos=NULL)
+#ciao
+$ cd netDx-master/examples/
+$ R
+require(knitr)
+knit2pdf("Medulloblastoma.Rnw")
+
+apt-get install libnetcdf-dev
+install.packages(c('doSNOW','HiClimR','psych'))
+
+> envFile
+[1] "GBM_prop1a2_iRef.rda"
+> rda_2save
+[1] "/home/wr/WJ/db/GBM_prop1a2_iRef_cutoff_gP_detection.rda"
+> pathFile
+[1] "/home/wr/Human_April_2018.gmt"
+> classes
+[1] "deceased" "living"  
+> net_db
+[1] "/home/wr/WJ/db/GBM_prop1a2_iRef/%s.csv"
+> n_cores
+[1] 18
+
+> gsub("%s.csv","",net_db)
+[1] "/home/wr/WJ/db/GBM_prop1a2_iRef/"
+
+body(makeNets)[[4]][[3]][[2]][[3]][[15]]=substitute(0.6)
+body(makeNets)[[4]][[3]][[2]][[3]][[15]]=substitute(l_res$cutoff)
+
+
+
+

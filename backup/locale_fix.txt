@@ -1,0 +1,21 @@
+locale
+locale -a
+locale-gen it_IT.UTF-8 
+cat /etc/default/locale
+update-locale LANG=it_IT.UTF-8
+cat /etc/default/locale
+exit
+
+#activate with x11
+http://laptops.eng.uci.edu/software-installation/using-linux/configure-ubuntu-for-x11-forwarding
+
+apt install libcanberra-gtk-module libcanberra-gtk3-module
+
+
+locale
+locale -a
+locale-gen en_CA.UTF-8
+cat /etc/default/locale
+update-locale LANG=en_CA.UTF-8
+cat /etc/default/locale
+exit
