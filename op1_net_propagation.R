@@ -27,7 +27,7 @@ nets_path="input/nets_l.rda"
 datasets_path="input/datasets.rda"
 pathway_list="input/Human_AllPathways_March_01_2020_symbol.gmt"
 #Output
-outDir="output/OV"
+outDir=paste(getwd(),"output/OV",sep="/")
 
 #Load data
 load(nets_path)
@@ -70,13 +70,15 @@ genoP=discr_prop_l(prop_net,geno,project_title)
 #Setup to build the predictor
 pathwayList <- readPathways(pathway_list,MIN_SIZE=5L,MAX_SIZE=300L)
 exprdat <- SummarizedExperiment(genoP, colData=pheno)
-groupList[["genetic"]] <- pathwayList
+objList <- list(genetic=exprdat)
+rownames(pheno) <- pheno$ID
+dataList <- MultiAssayExperiment::MultiAssayExperiment(objList,pheno)
+
+groupList[["genetic"]] <- pathwayList #names for groupList and objList now match
 
 #Run the predictor
-buildPredictor(dataList=exprdat,groupList=groupList,
+buildPredictor(dataList=dataList,groupList=groupList,
   makeNetFunc=makeNets, ### custom network creation function
   outDir=outDir, ## absolute path
   numCores=no_cores, numSplits=2L
 )
-print("END")
-#nFoldCV=10L, CVcutoff=9L,numSplits=30L, CVmemory=8L
